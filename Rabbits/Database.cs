@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Rabbits
 {
-    class Data
+    public class Data
     {
         public string RabbitName;
         public DateTime DateStart;

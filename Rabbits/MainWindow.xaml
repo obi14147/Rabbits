@@ -6,7 +6,26 @@
         xmlns:local="clr-namespace:Rabbits"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="-15,0,0,0">
+    <Grid Margin="-15,0,33,11">
+        <DataGrid x:Name="Rabbits" AutoGenerateColumns="False" Margin="155,93,117,93">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Králík" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Nahóněná" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Kocení" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Odstav" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Rozdělení" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Poznámky" Binding="{Binding Name}"/>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnNew" Content="New" Click="btnNew_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>
