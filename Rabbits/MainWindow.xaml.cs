@@ -24,6 +24,23 @@ namespace Rabbits
     {
         public static string dataFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\Rabbits.csv";
         private Database database;
+
+        private Dictionary<string, List<string>> dataIncome = new Dictionary<string, List<string>>();
+
+
+        //    private void Button_Click_1(object sender, RoutedEventArgs e)
+        //    {
+        //        var data = new Test { Test1 = "Test1", Test2 = "Test2" };
+
+        //        DataGridTest.Items.Add(data);
+        //    }
+        //}
+
+        //public class Test
+        //{
+        //    public string Test1 { get; set; }
+        //    public string Test2 { get; set; }
+        //}
         public MainWindow()
         {
             InitializeComponent();
@@ -31,17 +48,7 @@ namespace Rabbits
             createFolder();
             if (!checkFileExists()){ return; }
 
-            database.ReadData();
-            Data[] data = database.ReturnData();
-
-            Rabbits.ItemsSource = data;
-            //List<User> users = new List<User>();
-            //users.Add(new User() { Id = 1, Name = "John Doe", Birthday = new DateTime(1971, 7, 23) });
-            //users.Add(new User() { Id = 2, Name = "Jane Doe", Birthday = new DateTime(1974, 1, 17) });
-            //users.Add(new User() { Id = 3, Name = "Sammy Doe", Birthday = new DateTime(1991, 9, 2) });
-
-            //dgUsers.ItemsSource = users;
-
+            this.processData();
         }
         
         private void btnView_click(object sender, RoutedEventArgs e)
@@ -50,22 +57,52 @@ namespace Rabbits
             string test = dataRowView[1].ToString(); //Takto nejak
         }
 
-        //private void processData()
-        //{
-        //    try
-        //    {
-        //        database.ReadData();
-        //        foreach (Data d in database.ReturnData())
-        //        {
+        private void processData()
+        {
+            try
+            {
+                database.ReadData();
+                List<Data> dataToList = new List<Data>();
+                List<Data> itemsToRemove = new List<Data>();
+                foreach (Data d in database.ReturnData())
+                {
+                    //string start = d.DateStart.ToString("MM/yyyy");
+                    //string birth = d.DateBirth.ToString("MM/yyyy");
+                    //string paraMum = d.DateParaMum.ToString("MM/yyyy");
+                    //string split = d.DateSplit.ToString("MM/yyyy");
 
-        //            string period = d.Date.ToString("MM/yyyy");
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        MessageBox.Show("Database could not be load", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
+                    //List<string> dates = new List<string> {start, birth, paraMum, split, d.Note };
+                    //this.dataIncome.Add(d.RabbitName, dates);
+
+                    Data toGrid = new Data(
+                    d.RabbitName, d.DateStart, d.DateBirth, d.DateParaMum, d.DateSplit, d.Note
+                    );
+
+                    dataToList.Add(toGrid);
+
+                    // Check if list not contains the same rabbit, if true check the dateStart, if new is bigger
+                    // Add the item to list, which items will be remove from list to grid
+                    foreach (Data item in dataToList)
+                    {
+                        if (item.RabbitName == d.RabbitName & item.DateStart < d.DateStart)
+                        {
+                            itemsToRemove.Add(item);
+                        }
+                    }
+
+                    foreach (Data item in itemsToRemove)
+                    {
+                        dataToList.Remove(item);
+                    }
+
+                    this.dataGridRabbits.ItemsSource = dataToList.ToArray();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Database could not be load", "Error");
+            }
+        }
 
         private void createFolder()
         {

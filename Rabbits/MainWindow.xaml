@@ -7,15 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="-15,0,33,11">
-        <DataGrid x:Name="Rabbits" AutoGenerateColumns="False" Margin="155,93,117,93">
+        <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Margin="155,93,117,93">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Králík" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Nahóněná" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Kocení" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Odstav" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Rozdělení" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Poznámky" Binding="{Binding Name}"/>
-
+                <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Kocení" Binding="{Binding DateBirth, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Odstav" Binding="{Binding DateParaMum, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rozdělení" Binding="{Binding DateSplit, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Poznámky" Binding="{Binding Note, StringFormat=d}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -7,12 +7,12 @@ namespace Rabbits
 {
     public class Data
     {
-        public string RabbitName;
-        public DateTime DateStart;
-        public DateTime DateBirth;
-        public DateTime DateParaMum;
-        public DateTime DateSplit;
-        public string Note;
+        public string RabbitName { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateBirth { get; set; }
+        public DateTime DateParaMum { get; set; }
+        public DateTime DateSplit { get; set; }
+        public string Note { get; set; }
         public Data(string rabbitName, DateTime dateStart, DateTime dateBirth, DateTime dateParaMum, DateTime dateSplit, string note)
         {
             RabbitName = rabbitName;
@@ -50,7 +50,7 @@ namespace Rabbits
             {
                 foreach (Data d in data)
                 {
-                    string[] data = { d.DateStart.ToString("dd/MM/yyyy"), d.RabbitName, d.Note };
+                    string[] data = { d.RabbitName, d.DateStart.ToString("dd/MM/yyyy"),d.DateBirth.ToString("dd/MM/yyyy"), d.DateParaMum.ToString("dd/MM/yyyy"), d.DateSplit.ToString("dd/MM/yyyy"), d.Note };
                     string line = String.Join(";", data);
                     sw.WriteLine(line);
                 }
@@ -79,9 +79,9 @@ namespace Rabbits
             }
         }
 
-        public void DeleteData(string dateStart, string amount, string category, string note)
+        public void DeleteData(string rabbitName, string dateStart, string dateBirth, string dateParaMum, string dateSplit, string note)
         {
-            string searchedLine = $"{dateStart};{amount};{category};{note}";
+            string searchedLine = $"{rabbitName};{dateStart};{dateStart};{dateBirth};{dateParaMum};{dateSplit};{note}";
             List<string> lines = new List<string>();
 
             using (StreamReader sr = new StreamReader(file))
