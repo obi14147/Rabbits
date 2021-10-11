@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rabbits"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" Width="800" ResizeMode="NoResize" >
     <Grid Margin="-15,0,33,11">
-        <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Margin="155,93,117,93">
+        <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Margin="30,20,150,50">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=d}" IsReadOnly="True"/>
@@ -18,7 +18,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="btnNew" Content="New" Click="btnNew_Click"></Button>
+                            <Button x:Name="btnView" Content="Podrobnosti" Click="btnView_click"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

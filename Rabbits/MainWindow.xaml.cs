@@ -53,8 +53,9 @@ namespace Rabbits
         
         private void btnView_click(object sender, RoutedEventArgs e)
         {
-            DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
-            string test = dataRowView[1].ToString(); //Takto nejak
+            Data rowData = ((FrameworkElement)sender).DataContext as Data;
+            List<Data> infoAboutRabbit = new List<Data>();
+            infoAboutRabbit = getInfoAboutRabbit(rowData.RabbitName);
         }
 
         private void processData()
@@ -104,6 +105,26 @@ namespace Rabbits
             }
         }
 
+        private List<Data> getInfoAboutRabbit(string rabbitName)
+        {
+            List<Data> dataToList = new List<Data>();
+            try
+            {
+                database.ReadData();
+                foreach (Data item in database.ReturnData())
+                {
+                    if (item.RabbitName == rabbitName)
+                    {
+                        dataToList.Add(item);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Database could not be load", "Error");
+            }
+            return dataToList;
+        }
         private void createFolder()
         {
             string ny = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits";
@@ -123,11 +144,6 @@ namespace Rabbits
             {
                 return false;
             }
-        }
-
-        private void btnNew_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
