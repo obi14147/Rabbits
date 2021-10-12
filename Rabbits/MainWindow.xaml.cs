@@ -145,5 +145,11 @@ namespace Rabbits
                 return false;
             }
         }
+
+        private void btnNewRabbit_Click(object sender, RoutedEventArgs e)
+        {
+            NewRabbit newRabbit = new NewRabbit();
+            newRabbit.Show();
+        }
     }
 }

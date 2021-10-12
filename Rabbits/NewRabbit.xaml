@@ -1,0 +1,15 @@
+﻿<Window x:Class="Rabbits.NewRabbit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rabbits"
+        mc:Ignorable="d"
+        Title="Nový králík" Height="370" Width="583">
+    <Grid Margin="0,0,28,-6">
+        <Label Content="Jméno" HorizontalAlignment="Left" Margin="66,143,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="20"/>
+        <TextBox x:Name="txtBoxRabbitName" HorizontalAlignment="Center" Margin="0,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Width="200" FontSize="20"/>
+        <Button x:Name="btnConfirm" Content="Potvrdit" HorizontalAlignment="Left" Margin="116,249,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="20" Click="btnConfirm_Click"/>
+        <Button x:Name="btnCancel" Content="Zrušit" HorizontalAlignment="Left" Margin="303,249,0,0" VerticalAlignment="Top" Width="100" Height="30" FontSize="20"/>
+    </Grid>
+</Window>

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rabbits"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="800" ResizeMode="NoResize" >
-    <Grid Margin="-15,0,33,11">
+        Title="Hlavní okno" Height="350" Width="700" ResizeMode="NoResize">
+    <Grid Margin="0,0,0,0">
         <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Margin="30,20,150,50">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" IsReadOnly="False"/>
@@ -22,9 +22,9 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="btnNewRabbit" Content="Nový králík" HorizontalAlignment="Left" Margin="575,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.668,-0.805" Height="30" Width="100" Click="btnNewRabbit_Click"/>
 
     </Grid>
 </Window>
