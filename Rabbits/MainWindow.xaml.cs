@@ -45,7 +45,7 @@ namespace Rabbits
         {
             InitializeComponent();
             database = new Database(dataFile);
-            createFolder();
+            this.createFolder();
             if (!checkFileExists()){ return; }
 
             this.processData();
@@ -56,6 +56,8 @@ namespace Rabbits
             Data rowData = ((FrameworkElement)sender).DataContext as Data;
             List<Data> infoAboutRabbit = new List<Data>();
             infoAboutRabbit = getInfoAboutRabbit(rowData.RabbitName);
+            RabbitInfo rabbitInfo = new RabbitInfo();
+            rabbitInfo.Show();
         }
 
         private void processData()
@@ -150,6 +152,7 @@ namespace Rabbits
         {
             NewRabbit newRabbit = new NewRabbit();
             newRabbit.Show();
+            this.Close();
         }
     }
 }
