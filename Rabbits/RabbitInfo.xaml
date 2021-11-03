@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:Rabbits"
         mc:Ignorable="d"
         Title="RabbitInfo" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="0,0,0,35">
+        <Label x:Name="lblRabbitName" Content="" HorizontalAlignment="Left" Margin="655,20,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="20" RenderTransformOrigin="0.513,0.673"/>
+        <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Margin="30,20,150,50">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=d}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Kocení" Binding="{Binding DateBirth, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Odstav" Binding="{Binding DateParaMum, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rozdělení" Binding="{Binding DateSplit, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Poznámky" Binding="{Binding Note, StringFormat=d}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

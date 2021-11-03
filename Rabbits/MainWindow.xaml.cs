@@ -24,9 +24,7 @@ namespace Rabbits
     {
         public static string dataFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\Rabbits.csv";
         private Database database;
-
-        private Dictionary<string, List<string>> dataIncome = new Dictionary<string, List<string>>();
-
+        public List<Data> dataRabbits = new List<Data>();
 
         //    private void Button_Click_1(object sender, RoutedEventArgs e)
         //    {
@@ -54,14 +52,15 @@ namespace Rabbits
         private void btnView_click(object sender, RoutedEventArgs e)
         {
             Data rowData = ((FrameworkElement)sender).DataContext as Data;
-            List<Data> infoAboutRabbit = new List<Data>();
-            infoAboutRabbit = getInfoAboutRabbit(rowData.RabbitName);
-            RabbitInfo rabbitInfo = new RabbitInfo();
+            //List<Data> infoAboutRabbit = new List<Data>();
+            //infoAboutRabbit = getInfoAboutRabbit(rowData.RabbitName);
+            RabbitInfo rabbitInfo = new RabbitInfo(rowData.RabbitName);
             rabbitInfo.Show();
         }
 
         private void processData()
         {
+            this.dataRabbits.Clear();
             try
             {
                 database.ReadData();
@@ -75,13 +74,14 @@ namespace Rabbits
                     //string split = d.DateSplit.ToString("MM/yyyy");
 
                     //List<string> dates = new List<string> {start, birth, paraMum, split, d.Note };
-                    //this.dataIncome.Add(d.RabbitName, dates);
+                    //this.dataRabbits.Add(d.RabbitName, dates);
 
                     Data toGrid = new Data(
                     d.RabbitName, d.DateStart, d.DateBirth, d.DateParaMum, d.DateSplit, d.Note
                     );
 
                     dataToList.Add(toGrid);
+                    this.dataRabbits.Add(toGrid);
 
                     // Check if list not contains the same rabbit, if true check the dateStart, if new is bigger
                     // Add the item to list, which items will be remove from list to grid
