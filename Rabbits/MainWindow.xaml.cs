@@ -154,5 +154,10 @@ namespace Rabbits
             newRabbit.Show();
             this.Close();
         }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            this.processData();
+        }
     }
 }
