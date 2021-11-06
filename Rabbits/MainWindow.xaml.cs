@@ -26,19 +26,6 @@ namespace Rabbits
         private Database database;
         public List<Data> dataRabbits = new List<Data>();
 
-        //    private void Button_Click_1(object sender, RoutedEventArgs e)
-        //    {
-        //        var data = new Test { Test1 = "Test1", Test2 = "Test2" };
-
-        //        DataGridTest.Items.Add(data);
-        //    }
-        //}
-
-        //public class Test
-        //{
-        //    public string Test1 { get; set; }
-        //    public string Test2 { get; set; }
-        //}
         public MainWindow()
         {
             InitializeComponent();
@@ -52,8 +39,6 @@ namespace Rabbits
         private void btnView_click(object sender, RoutedEventArgs e)
         {
             Data rowData = ((FrameworkElement)sender).DataContext as Data;
-            //List<Data> infoAboutRabbit = new List<Data>();
-            //infoAboutRabbit = getInfoAboutRabbit(rowData.RabbitName);
             RabbitInfo rabbitInfo = new RabbitInfo(rowData.RabbitName);
             rabbitInfo.Show();
         }
@@ -68,14 +53,6 @@ namespace Rabbits
                 List<Data> itemsToRemove = new List<Data>();
                 foreach (Data d in database.ReturnData())
                 {
-                    //string start = d.DateStart.ToString("MM/yyyy");
-                    //string birth = d.DateBirth.ToString("MM/yyyy");
-                    //string paraMum = d.DateParaMum.ToString("MM/yyyy");
-                    //string split = d.DateSplit.ToString("MM/yyyy");
-
-                    //List<string> dates = new List<string> {start, birth, paraMum, split, d.Note };
-                    //this.dataRabbits.Add(d.RabbitName, dates);
-
                     Data toGrid = new Data(
                     d.RabbitName, d.DateStart, d.DateBirth, d.DateParaMum, d.DateSplit, d.Note
                     );
