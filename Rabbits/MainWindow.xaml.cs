@@ -125,16 +125,23 @@ namespace Rabbits
             }
         }
 
-        private void btnNewRabbit_Click(object sender, RoutedEventArgs e)
-        {
-            NewRabbit newRabbit = new NewRabbit();
-            newRabbit.Show();
-            this.Close();
-        }
+        //private void btnNewRabbit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    NewRabbit newRabbit = new NewRabbit();
+        //    newRabbit.Show();
+        //    this.Close();
+        //}
 
         private void Window_Activated(object sender, EventArgs e)
         {
             this.processData();
+        }
+
+        private void mnNewRabbit(object sender, RoutedEventArgs e)
+        {
+            NewRabbit newRabbit = new NewRabbit();
+            newRabbit.Show();
+            this.Close();
         }
     }
 }
