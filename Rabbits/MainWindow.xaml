@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rabbits"
         mc:Ignorable="d"
-        Title="Hlavní okno" Height="800" Width="1200" ResizeMode="NoResize" Activated="Window_Activated">
+        Title="Hlavní okno" Height="800" Width="1200" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Activated="Window_Activated">
     <Grid Margin="0,0,0,0" Height="800" Width="1200">
-        <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Height="500" Width="1120" Margin="10,50,40,250" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Height="500" Width="1120" Margin="10,50,40,250" FontSize="20" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" Width="200" FontSize="20" IsReadOnly="False"/>
-                <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=d}" Width="120" FontSize="20" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Kocení" Binding="{Binding DateBirth, StringFormat=d}" Width="120" FontSize="20" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Odstav" Binding="{Binding DateParaMum, StringFormat=d}" Width="120" FontSize="20" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Rozdělení" Binding="{Binding DateSplit, StringFormat=d}" Width="120" FontSize="20" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Poznámky" Binding="{Binding Note, StringFormat=d}" Width="250" FontSize="20" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" Width="200" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=d}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Kocení" Binding="{Binding DateBirth, StringFormat=d}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Odstav" Binding="{Binding DateParaMum, StringFormat=d}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rozdělení" Binding="{Binding DateSplit, StringFormat=d}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Poznámky" Binding="{Binding Note, StringFormat=d}" Width="250" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -25,7 +25,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" FontSize="20">
+            <Menu DockPanel.Dock="Top" FontSize="15">
                 <MenuItem Header="_Vložit">
                     <MenuItem Header="_Nový králík" Click="mnNewRabbit"/>
                 </MenuItem>

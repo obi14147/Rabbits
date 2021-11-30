@@ -18,7 +18,6 @@ namespace Rabbits
     /// </summary>
     public partial class NewRabbit : Window
     {
-        private MainWindow mainWindow = new MainWindow();
         private Database database;
         private CalculateDate calculateDate;
         public NewRabbit()
@@ -58,18 +57,12 @@ namespace Rabbits
             }
 
             this.Close();
-            mainWindow.Show();
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            mainWindow.Show();
-        }
-
-        private void NewRabbit_Closing(object sender, CancelEventArgs e)
-        {
-            mainWindow.Show();
         }
     }
 }
