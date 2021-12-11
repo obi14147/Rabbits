@@ -140,7 +140,6 @@ namespace Rabbits
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            //TODO:
             Database newDatabase = new Database(dataFile);
             calculateDate = new CalculateDate();
             DateTime dateStart = this.dpStart.SelectedDate.Value;
@@ -170,8 +169,12 @@ namespace Rabbits
             }
             this.processData();
         }
-         
-        private void mnStatistic(object sender, RoutedEventArgs e)
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Smazat kralika z databaze a dat ho do nove, kde budou vseci smazani.
+        }
+            private void mnStatistic(object sender, RoutedEventArgs e)
         {
             //TODO:
             MessageBox.Show("There will be some statistics about rabbits.", "Information");

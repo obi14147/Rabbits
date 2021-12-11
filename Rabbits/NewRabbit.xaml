@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rabbits"
         mc:Ignorable="d"
-        Title="Nový králík" Height="290" Width="480" ResizeMode="NoResize">
+        Title="Nový králík" Height="290" Width="480" ResizeMode="NoResize" Icon="/Icons/easter-bunny.ico">
     <Grid Margin="0,0,28,-6">
         <Label Content="Jméno" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="40" Width="100" FontSize="20"/>
         <TextBox x:Name="txtBoxRabbitName" HorizontalAlignment="Left" Margin="200,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="40" Width="220" FontSize="20" Grid.ColumnSpan="2"/>

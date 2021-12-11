@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rabbits"
         mc:Ignorable="d"
-        Title="Hlavní okno" Height="800" Width="1200" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Activated="Window_Activated">
+        Title="Hlavní okno" Height="800" Width="1200" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Activated="Window_Activated" Icon="/Icons/rabbits.ico">
     <Grid Margin="0,0,0,0" Height="800" Width="1200">
         <DataGrid x:Name="dataGridRabbits" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="False" Height="500" Width="1130" Margin="10,50,40,240" FontSize="20" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
@@ -32,7 +32,7 @@
                         <DatePicker Name="dpStart"></DatePicker>
                         <Button x:Name="btnConfirm" Content="Potvrdit" Click="btnConfirm_Click"></Button>
                     </MenuItem>
-                    <MenuItem Header="Smazat" />
+                    <Button x:Name="btnRemove" Content="Smazat" Click="btnRemove_Click"></Button>
                 </MenuItem>
                 <MenuItem Header="_Informace">
                     <MenuItem Header="Statistika" Click="mnStatistic"/>
