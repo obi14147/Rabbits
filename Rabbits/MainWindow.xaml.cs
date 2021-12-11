@@ -24,11 +24,13 @@ namespace Rabbits
     {
         public static string dataFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\Rabbits.csv";
         private Database database;
+        private CalculateDate calculateDate;
         public List<Data> dataRabbits = new List<Data>();
 
         public MainWindow()
         {
             InitializeComponent();
+            this.dpStart.SelectedDate = DateTime.Today;
             database = new Database(dataFile);
             this.createFolder();
             if (!checkFileExists()){ return; }
@@ -135,5 +137,45 @@ namespace Rabbits
             NewRabbit newRabbit = new NewRabbit();
             newRabbit.Show();
         }
+
+        private void btnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO:
+            Database newDatabase = new Database(dataFile);
+            calculateDate = new CalculateDate();
+            DateTime dateStart = this.dpStart.SelectedDate.Value;
+            this.dpStart.SelectedDate = null;
+
+            //Convert object to Data
+            object rabbit = this.dataGridRabbits.SelectedItem;
+            Data rabbitClass = (Data)rabbit;
+
+            if (dateStart == null || rabbitClass == null)
+            {
+                MessageBox.Show("Vyberte králíka a zvolte datum!", "Error");
+                return;
+            }
+
+            DateTime[] dates = calculateDate.getDates(dateStart);
+
+            newDatabase.AddData(rabbitClass.RabbitName, dateStart, dates[0], dates[1], dates[2], "-");
+            try
+            {
+                newDatabase.SaveData();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Database could not be saved", "Error");
+            }
+            this.processData();
+        }
+         
+        private void mnStatistic(object sender, RoutedEventArgs e)
+        {
+            //TODO:
+            MessageBox.Show("There will be some statistics about rabbits.", "Information");
+        }
+
     }
 }

@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Hlavní okno" Height="800" Width="1200" SizeToContent="WidthAndHeight" ResizeMode="NoResize" Activated="Window_Activated">
     <Grid Margin="0,0,0,0" Height="800" Width="1200">
-        <DataGrid x:Name="dataGridRabbits" AutoGenerateColumns="False" Height="500" Width="1120" Margin="10,50,40,250" FontSize="20" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
+        <DataGrid x:Name="dataGridRabbits" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="False" Height="500" Width="1130" Margin="10,50,40,240" FontSize="20" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" Width="200" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" Width="200" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=d}" Width="120" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Kocení" Binding="{Binding DateBirth, StringFormat=d}" Width="120" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Odstav" Binding="{Binding DateParaMum, StringFormat=d}" Width="120" IsReadOnly="True"/>
@@ -27,13 +27,20 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top" FontSize="15">
                 <MenuItem Header="_Vložit">
-                    <MenuItem Header="_Nový králík" Click="mnNewRabbit"/>
+                    <MenuItem Header="Nový králík" Click="mnNewRabbit"/>
+                    <MenuItem Header="Připuštění">
+                        <DatePicker Name="dpStart"></DatePicker>
+                        <Button x:Name="btnConfirm" Content="Potvrdit" Click="btnConfirm_Click"></Button>
+                    </MenuItem>
+                    <MenuItem Header="Smazat" />
                 </MenuItem>
                 <MenuItem Header="_Informace">
-                    <MenuItem Header="Statistika"/>
+                    <MenuItem Header="Statistika" Click="mnStatistic"/>
                 </MenuItem>
             </Menu>
-            <StackPanel></StackPanel>
+            <StackPanel>
+              
+            </StackPanel>
         </DockPanel>
 
     </Grid>

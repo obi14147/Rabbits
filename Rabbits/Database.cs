@@ -50,7 +50,7 @@ namespace Rabbits
             {
                 foreach (Data d in data)
                 {
-                    string[] data = { d.RabbitName, d.DateStart.ToString("dd/MM/yyyy"),d.DateBirth.ToString("dd/MM/yyyy"), d.DateParaMum.ToString("dd/MM/yyyy"), d.DateSplit.ToString("dd/MM/yyyy"), d.Note };
+                    string[] data = { d.RabbitName, d.DateStart.ToString("dd/MM/yyyy"), d.DateBirth.ToString("dd/MM/yyyy"), d.DateParaMum.ToString("dd/MM/yyyy"), d.DateSplit.ToString("dd/MM/yyyy"), d.Note };
                     string line = String.Join(";", data);
                     sw.WriteLine(line);
                 }
