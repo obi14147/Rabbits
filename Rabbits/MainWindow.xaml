@@ -10,11 +10,11 @@
         <DataGrid x:Name="dataGridRabbits" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="False" Height="500" Width="1130" Margin="10,50,40,240" FontSize="20" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Králík" Binding="{Binding RabbitName}" Width="200" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=d}" Width="120" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Kocení" Binding="{Binding DateBirth, StringFormat=d}" Width="120" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Odstav" Binding="{Binding DateParaMum, StringFormat=d}" Width="120" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Rozdělení" Binding="{Binding DateSplit, StringFormat=d}" Width="120" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Poznámky" Binding="{Binding Note, StringFormat=d}" Width="250" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nahóněná" Binding="{Binding DateStart, StringFormat=dd.MM.yyyy}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Kocení" Binding="{Binding DateBirth, StringFormat=dd.MM.yyyy}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Odstav" Binding="{Binding DateParaMum, StringFormat=dd.MM.yyyy}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Rozdělení" Binding="{Binding DateSplit, StringFormat=dd.MM.yyyy}" Width="120" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Poznámky" Binding="{Binding Note, StringFormat=dd.MM.yyyy}" Width="250" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
