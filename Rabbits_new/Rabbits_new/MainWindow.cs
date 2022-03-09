@@ -59,6 +59,7 @@ namespace Rabbits_new
 
         private void processData()
         {
+            this.dataGridRabbits.Rows.Clear();
             this.dataRabbits.Clear();
             try
             {
@@ -123,6 +124,11 @@ namespace Rabbits_new
         {
             NewRabbit newRabbit = new NewRabbit();
             newRabbit.Show();
+        }
+
+        private void MainWindow_Activated(object sender, EventArgs e)
+        {
+            this.processData();
         }
     }
 }

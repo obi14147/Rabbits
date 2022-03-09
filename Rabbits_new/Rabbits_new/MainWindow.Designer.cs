@@ -122,6 +122,7 @@ namespace Rabbits_new
             this.MainMenuStrip = this.mnStrip;
             this.Name = "MainWindow";
             this.Text = "Hlavní okno";
+            this.Activated += new System.EventHandler(this.MainWindow_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRabbits)).EndInit();
             this.mnStrip.ResumeLayout(false);
             this.mnStrip.PerformLayout();
