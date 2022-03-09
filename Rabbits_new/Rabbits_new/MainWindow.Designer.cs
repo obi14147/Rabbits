@@ -35,22 +35,28 @@ namespace Rabbits_new
             // 
             // dataGridRabbits
             // 
+            this.dataGridRabbits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridRabbits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridRabbits.Location = new System.Drawing.Point(54, 54);
+            this.dataGridRabbits.MultiSelect = false;
             this.dataGridRabbits.Name = "dataGridRabbits";
+            this.dataGridRabbits.ReadOnly = true;
+            this.dataGridRabbits.RowHeadersVisible = false;
             this.dataGridRabbits.RowHeadersWidth = 62;
             this.dataGridRabbits.RowTemplate.Height = 33;
-            this.dataGridRabbits.Size = new System.Drawing.Size(655, 337);
+            this.dataGridRabbits.Size = new System.Drawing.Size(861, 334);
             this.dataGridRabbits.TabIndex = 0;
+            this.dataGridRabbits.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridRabbits_CellClick);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(965, 416);
             this.Controls.Add(this.dataGridRabbits);
             this.Name = "MainWindow";
-            this.Text = "Form1";
+            this.Text = "Hlavní okno";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRabbits)).EndInit();
             this.ResumeLayout(false);
 
