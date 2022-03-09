@@ -49,7 +49,10 @@ namespace Rabbits_new
         {
             if (e.ColumnIndex == 6)
             {
-                MessageBox.Show("KUK!");
+                int rowIndex = dataGridRabbits.CurrentCell.RowIndex;
+                string name = dataGridRabbits.Rows[rowIndex].Cells[0].Value.ToString();
+                RabbitInfo rabbitInfo = new RabbitInfo(name);
+                rabbitInfo.Show();
             }
         }
         #endregion
@@ -114,6 +117,12 @@ namespace Rabbits_new
             {
                 return false;
             }
+        }
+
+        private void newRabbitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewRabbit newRabbit = new NewRabbit();
+            newRabbit.Show();
         }
     }
 }
