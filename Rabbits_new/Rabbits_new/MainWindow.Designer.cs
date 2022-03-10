@@ -43,13 +43,15 @@ namespace Rabbits_new
             // 
             // dataGridRabbits
             // 
-            this.dataGridRabbits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridRabbits.AllowUserToAddRows = false;
+            this.dataGridRabbits.AllowUserToDeleteRows = false;
+            this.dataGridRabbits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridRabbits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridRabbits.Location = new System.Drawing.Point(54, 54);
             this.dataGridRabbits.MultiSelect = false;
             this.dataGridRabbits.Name = "dataGridRabbits";
-            this.dataGridRabbits.ReadOnly = true;
             this.dataGridRabbits.RowHeadersVisible = false;
             this.dataGridRabbits.RowHeadersWidth = 62;
             this.dataGridRabbits.RowTemplate.Height = 33;

@@ -33,10 +33,15 @@ namespace Rabbits_new
         {
             dataGridRabbits.ColumnCount = 6;
             dataGridRabbits.Columns[0].Name = "Králík";
+            dataGridRabbits.Columns[0].ReadOnly = true;
             dataGridRabbits.Columns[1].Name = "Nahóňěná";
+            dataGridRabbits.Columns[1].ReadOnly = true;
             dataGridRabbits.Columns[2].Name = "Kocení";
+            dataGridRabbits.Columns[2].ReadOnly = true;
             dataGridRabbits.Columns[3].Name = "Odstav";
+            dataGridRabbits.Columns[3].ReadOnly = true;
             dataGridRabbits.Columns[4].Name = "Rozdělení";
+            dataGridRabbits.Columns[4].ReadOnly = true;
             dataGridRabbits.Columns[5].Name = "Poznámky";
 
             DataGridViewButtonColumn btnMore = new DataGridViewButtonColumn();
@@ -57,7 +62,7 @@ namespace Rabbits_new
         }
         #endregion
 
-        private void processData()
+        public void processData()
         {
             this.dataGridRabbits.Rows.Clear();
             this.dataRabbits.Clear();
