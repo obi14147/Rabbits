@@ -10,7 +10,7 @@ namespace Rabbits_new
 {    public partial class RabbitInfo : Form
     {
         private MainWindow mainWindow = new MainWindow();
-        private Database database;
+        private DatabaseFemale database;
         private CalculateDate calculateDate;
         private string RabbitName { get; set; }
 
@@ -19,7 +19,7 @@ namespace Rabbits_new
             RabbitName = rabbitName;
             InitializeComponent();
             
-            database = new Database(MainWindow.dataFile);
+            database = new DatabaseFemale(MainWindow.dataFileFemaleRabbits);
 
             this.lblName.Text = rabbitName;
             this.InitializeGrid();
@@ -43,7 +43,7 @@ namespace Rabbits_new
             this.dataGridInfo.Rows.Clear();
 
             List<InfoData> dataToList = new List<InfoData>();
-            foreach (Data rabbit in mainWindow.dataRabbits)
+            foreach (DataFemale rabbit in mainWindow.dataRabbits)
             {
                 if (rabbit.RabbitName == this.RabbitName)
                 {

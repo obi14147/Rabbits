@@ -13,17 +13,17 @@ namespace Rabbits_new
 {
     public partial class MainWindow : Form
     {
-        public static string dataFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\Rabbits_test.csv";
-        private Database database;
+        public static string dataFileFemaleRabbits = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\RabbitsFemale_test.csv";
+        private DatabaseFemale databaseFemale;
         private CalculateDate calculateDate;
-        public List<Data> dataRabbits = new List<Data>();
+        public List<DataFemale> dataRabbits = new List<DataFemale>();
         public MainWindow()
         {
             InitializeComponent();
             this.InitializeGrid();
 
             //this.dpStart.SelectedDate = DateTime.Today;
-            database = new Database(dataFile);
+            databaseFemale = new DatabaseFemale(dataFileFemaleRabbits);
             this.createFolder();
             if (!checkFileExists()) { return; }
             this.processData();
@@ -68,12 +68,12 @@ namespace Rabbits_new
             this.dataRabbits.Clear();
             try
             {
-                database.ReadData();
-                List<Data> dataToList = new List<Data>();
-                List<Data> itemsToRemove = new List<Data>();
-                foreach (Data d in database.ReturnData())
+                databaseFemale.ReadData();
+                List<DataFemale> dataToList = new List<DataFemale>();
+                List<DataFemale> itemsToRemove = new List<DataFemale>();
+                foreach (DataFemale d in databaseFemale.ReturnData())
                 {
-                    Data toGrid = new Data(
+                    DataFemale toGrid = new DataFemale(
                     d.RabbitName, d.DateStart, d.DateBirth, d.DateParaMum, d.DateSplit, d.Note
                     );
 
@@ -82,7 +82,7 @@ namespace Rabbits_new
 
                     // Check if list not contains the same rabbit, if true check the dateStart, if new is bigger
                     // Add the item to list, which items will be remove from list to grid
-                    foreach (Data item in dataToList)
+                    foreach (DataFemale item in dataToList)
                     {
                         if (item.RabbitName == d.RabbitName & item.DateStart < d.DateStart)
                         {
@@ -90,12 +90,12 @@ namespace Rabbits_new
                         }
                     }
 
-                    foreach (Data item in itemsToRemove)
+                    foreach (DataFemale item in itemsToRemove)
                     {
                         dataToList.Remove(item);
                     }
                 }
-                foreach (Data rab in dataToList)
+                foreach (DataFemale rab in dataToList)
                 {
                     this.dataGridRabbits.Rows.Add(rab.RabbitName, rab.DateStart.ToString("dd.MM.yyyy"), rab.DateBirth.ToString("dd.MM.yyyy"), rab.DateParaMum.ToString("dd.MM.yyyy"), rab.DateSplit.ToString("dd.MM.yyyy"), rab.Note);
                 }
@@ -115,7 +115,7 @@ namespace Rabbits_new
         }
         private bool checkFileExists()
         {
-            if (File.Exists(dataFile))
+            if (File.Exists(dataFileFemaleRabbits))
             {
                 return true;
             }

@@ -10,12 +10,12 @@ namespace Rabbits_new
 {
     public partial class NewRabbit : Form
     {
-        private Database database;
+        private DatabaseFemale database;
         private CalculateDate calculateDate;
         public NewRabbit()
         {
             InitializeComponent();
-            database = new Database(MainWindow.dataFile);
+            database = new DatabaseFemale(MainWindow.dataFileFemaleRabbits);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)

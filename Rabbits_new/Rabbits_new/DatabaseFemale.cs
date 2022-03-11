@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Rabbits_new
 {
-    public class Data
+    public class DataFemale
     {
         public string RabbitName { get; set; }
         public DateTime DateStart { get; set; }
@@ -13,7 +13,7 @@ namespace Rabbits_new
         public DateTime DateParaMum { get; set; }
         public DateTime DateSplit { get; set; }
         public string Note { get; set; }
-        public Data(string rabbitName, DateTime dateStart, DateTime dateBirth, DateTime dateParaMum, DateTime dateSplit, string note)
+        public DataFemale(string rabbitName, DateTime dateStart, DateTime dateBirth, DateTime dateParaMum, DateTime dateSplit, string note)
         {
             RabbitName = rabbitName;
             DateStart = dateStart;
@@ -23,23 +23,23 @@ namespace Rabbits_new
             Note = note;
         }
     }
-    class Database
+    class DatabaseFemale
     {
-        private List<Data> data;
+        private List<DataFemale> data;
         private string file;
 
-        public Database(string file)
+        public DatabaseFemale(string file)
         {
-            data = new List<Data>();
+            data = new List<DataFemale>();
             this.file = file;
         }
         public void AddData(string rabbitName, DateTime dateStart, DateTime dateBirth, DateTime dateParaMum, DateTime dateSplit, string note)
         {
-            Data d = new Data(rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, note);
+            DataFemale d = new DataFemale(rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, note);
             data.Add(d);
         }
 
-        public Data[] ReturnData()
+        public DataFemale[] ReturnData()
         {
             return data.ToArray();
         }
@@ -48,7 +48,7 @@ namespace Rabbits_new
         {
             using (StreamWriter sw = new StreamWriter(file, true))
             {
-                foreach (Data d in data)
+                foreach (DataFemale d in data)
                 {
                     string[] data = { d.RabbitName, d.DateStart.ToString("dd/MM/yyyy"), d.DateBirth.ToString("dd/MM/yyyy"), d.DateParaMum.ToString("dd/MM/yyyy"), d.DateSplit.ToString("dd/MM/yyyy"), d.Note };
                     string line = String.Join(";", data);
