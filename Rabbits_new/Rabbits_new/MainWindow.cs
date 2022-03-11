@@ -14,7 +14,10 @@ namespace Rabbits_new
     public partial class MainWindow : Form
     {
         public static string dataFileFemaleRabbits = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\RabbitsFemale_test.csv";
+        public static string dataFileAllRabbits = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\RabbitsAll_test.csv";
         private DatabaseFemale databaseFemale;
+        private DatabaseRabbits databaseAllRabbits;
+
         private CalculateDate calculateDate;
         public List<DataFemale> dataRabbits = new List<DataFemale>();
         public MainWindow()
@@ -24,8 +27,13 @@ namespace Rabbits_new
 
             //this.dpStart.SelectedDate = DateTime.Today;
             databaseFemale = new DatabaseFemale(dataFileFemaleRabbits);
+            databaseAllRabbits = new DatabaseRabbits(dataFileAllRabbits);
+
             this.createFolder();
-            if (!checkFileExists()) { return; }
+            //TODO: Not work correctly
+            if (!checkFileExists(dataFileFemaleRabbits)) { return; }
+            if (!checkFileExists(dataFileAllRabbits)) { return; }
+
             this.processData();
         }
         #region Initialize component
@@ -113,9 +121,9 @@ namespace Rabbits_new
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits");
             }
         }
-        private bool checkFileExists()
+        private bool checkFileExists(string file_path)
         {
-            if (File.Exists(dataFileFemaleRabbits))
+            if (File.Exists(file_path))
             {
                 return true;
             }

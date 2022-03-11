@@ -10,37 +10,39 @@ namespace Rabbits_new
 {
     public partial class NewRabbit : Form
     {
-        private DatabaseFemale database;
+        private DatabaseRabbits databaseRabbits;
         private CalculateDate calculateDate;
         public NewRabbit()
         {
             InitializeComponent();
-            database = new DatabaseFemale(MainWindow.dataFileFemaleRabbits);
+            //database = new DatabaseFemale(MainWindow.dataFileFemaleRabbits);
+            databaseRabbits = new DatabaseRabbits(MainWindow.dataFileAllRabbits);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            calculateDate = new CalculateDate();
+            //calculateDate = new CalculateDate();
             if (this.txtName.Text == "")
             {
                 MessageBox.Show("Write a rabbit name!", "Warning");
                 return;
             }
-            else if (this.dtTmStart.Text == "")
+            else if (this.dtTmBirth.Text == "")
             {
-                MessageBox.Show("Write a start date!", "Warning");
+                MessageBox.Show("Write a birth date!", "Warning");
                 return;
             }
             DateTime dateStart;
-            if (!DateTime.TryParse(this.dtTmStart.Text, out dateStart))
-                MessageBox.Show("Unable to convert '{0}' to a date.", this.dtTmStart.Text);
+            if (!DateTime.TryParse(this.dtTmBirth.Text, out dateStart))
+                MessageBox.Show("Unable to convert '{0}' to a date.", this.dtTmBirth.Text);
 
-            DateTime[] dates = calculateDate.getDates(dateStart);
+            //DateTime[] dates = calculateDate.getDates(dateStart);
+            DateTime dateDeath = DateTime.MaxValue;
 
-            database.AddData(this.txtName.Text, dateStart, dates[0], dates[1], dates[2], txtNote.Text);
+            databaseRabbits.AddData(this.txtName.Text, dateStart, dateDeath,this.cmBoxSex.Text, this.txtNote.Text);
             try
             {
-                database.SaveData();
+                databaseRabbits.SaveData();
             }
             catch (Exception)
             {
