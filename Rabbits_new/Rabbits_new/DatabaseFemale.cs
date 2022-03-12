@@ -84,7 +84,7 @@ namespace Rabbits_new
 
         public void DeleteData(string rabbitName, string dateStart, string dateBirth, string dateParaMum, string dateSplit, string note, string numberKids)
         {
-            string searchedLine = $"{rabbitName};{dateStart};{dateStart};{dateBirth};{dateParaMum};{dateSplit};{note};{numberKids}";
+            string searchedLine = $"{rabbitName};{dateStart};{dateBirth};{dateParaMum};{dateSplit};{note};{numberKids}";
             List<string> lines = new List<string>();
 
             using (StreamReader sr = new StreamReader(file))
@@ -101,6 +101,34 @@ namespace Rabbits_new
                     {
                         lines.Add(line);
                     }
+                }
+            }
+            using (StreamWriter sw = new StreamWriter(file, false))
+            {
+                foreach (string ln in lines)
+                {
+                    sw.WriteLine(ln);
+                }
+                sw.Flush();
+            }
+        }
+        public void EditData(string[] oldData, string[] newData)
+        {
+            string searchedLine = $"{oldData[0]};{oldData[1]};{oldData[2]};{oldData[3]};{oldData[4]};{oldData[5]};{oldData[6]}";
+            string newLine = $"{newData[0]};{newData[1]};{newData[2]};{newData[3]};{newData[4]};{newData[5]};{newData[6]}";
+            List<string> lines = new List<string>();
+
+            using (StreamReader sr = new StreamReader(file))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line == searchedLine)
+                    {
+                        line = newLine;
+                    }
+                    lines.Add(line);
                 }
             }
             using (StreamWriter sw = new StreamWriter(file, false))

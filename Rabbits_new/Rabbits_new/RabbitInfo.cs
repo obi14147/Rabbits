@@ -105,7 +105,27 @@ namespace Rabbits_new
         //TODO: Kdyz je zmena poznamky, nebo poctu mladat - porjit celu tabulku a pak opravit data v databazi
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < this.dataGridInfo.RowCount; i++)
+            {
+                string rabbitName = this.lblName.Text;
+                string dateStart = this.dataGridInfo.Rows[i].Cells[0].Value.ToString();
+                string dateBirth = this.dataGridInfo.Rows[i].Cells[1].Value.ToString();
+                string dateParaMum = this.dataGridInfo.Rows[i].Cells[2].Value.ToString();
+                string dateSplit = this.dataGridInfo.Rows[i].Cells[3].Value.ToString();
 
+                string noteCheck = this.dataGridInfo.Rows[i].Cells[4].Value.ToString();
+                int numberKidsCheck = Int32.Parse(this.dataGridInfo.Rows[i].Cells[5].Value.ToString());
+
+                string noteOld = dataToList[i].Note;
+                int numberKidsOld = dataToList[i].NumberKids;
+
+                if (noteCheck != noteOld || numberKidsCheck != numberKidsOld)
+                {
+                    string[] oldData = { rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, noteOld, numberKidsOld.ToString() };
+                    string[] newData = {rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, noteCheck, numberKidsCheck.ToString() };
+                    database.EditData(oldData, newData);
+                }
+            }
         }
     }
 }
