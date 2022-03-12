@@ -13,7 +13,7 @@ namespace Rabbits_new
         private DatabaseFemale database;
         private CalculateDate calculateDate;
         private string RabbitName { get; set; }
-
+        private List<InfoData> dataToList = new List<InfoData>();
         public RabbitInfo(string rabbitName, string category)
         {
             RabbitName = rabbitName;
@@ -56,8 +56,8 @@ namespace Rabbits_new
         private void dataFromDatabaseToGrid()
         {
             this.dataGridInfo.Rows.Clear();
+            dataToList.Clear();
 
-            List<InfoData> dataToList = new List<InfoData>();
             foreach (DataFemale rabbit in mainWindow.dataRabbits)
             {
                 if (rabbit.RabbitName == this.RabbitName)
@@ -100,6 +100,12 @@ namespace Rabbits_new
             }
             mainWindow.processData();
             this.dataFromDatabaseToGrid();
+        }
+
+        //TODO: Kdyz je zmena poznamky, nebo poctu mladat - porjit celu tabulku a pak opravit data v databazi
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
