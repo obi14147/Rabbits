@@ -52,6 +52,7 @@ namespace Rabbits_new
             this.dataGridRabbits.Location = new System.Drawing.Point(54, 54);
             this.dataGridRabbits.MultiSelect = false;
             this.dataGridRabbits.Name = "dataGridRabbits";
+            this.dataGridRabbits.ReadOnly = true;
             this.dataGridRabbits.RowHeadersVisible = false;
             this.dataGridRabbits.RowHeadersWidth = 62;
             this.dataGridRabbits.RowTemplate.Height = 33;

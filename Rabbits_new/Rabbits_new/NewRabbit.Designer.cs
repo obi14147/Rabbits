@@ -37,8 +37,8 @@ namespace Rabbits_new
             this.dtTmBirth = new System.Windows.Forms.DateTimePicker();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblSex = new System.Windows.Forms.Label();
-            this.cmBoxSex = new System.Windows.Forms.ComboBox();
+            this.lblCategory = new System.Windows.Forms.Label();
+            this.cmBoxCategory = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblName
@@ -109,34 +109,34 @@ namespace Rabbits_new
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lblSex
+            // lblCategory
             // 
-            this.lblSex.AutoSize = true;
-            this.lblSex.Location = new System.Drawing.Point(54, 164);
-            this.lblSex.Name = "lblSex";
-            this.lblSex.Size = new System.Drawing.Size(68, 25);
-            this.lblSex.TabIndex = 8;
-            this.lblSex.Text = "Pohlaví";
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Location = new System.Drawing.Point(54, 164);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(87, 25);
+            this.lblCategory.TabIndex = 8;
+            this.lblCategory.Text = "Kategorie";
             // 
-            // cmBoxSex
+            // cmBoxCategory
             // 
-            this.cmBoxSex.FormattingEnabled = true;
-            this.cmBoxSex.Items.AddRange(new object[] {
+            this.cmBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmBoxCategory.FormattingEnabled = true;
+            this.cmBoxCategory.Items.AddRange(new object[] {
             "Samica",
             "Samec"});
-            this.cmBoxSex.Location = new System.Drawing.Point(250, 164);
-            this.cmBoxSex.Name = "cmBoxSex";
-            this.cmBoxSex.Size = new System.Drawing.Size(317, 33);
-            this.cmBoxSex.TabIndex = 9;
-            this.cmBoxSex.Text = "Samica";
+            this.cmBoxCategory.Location = new System.Drawing.Point(250, 164);
+            this.cmBoxCategory.Name = "cmBoxCategory";
+            this.cmBoxCategory.Size = new System.Drawing.Size(317, 33);
+            this.cmBoxCategory.TabIndex = 9;
             // 
             // NewRabbit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(708, 432);
-            this.Controls.Add(this.cmBoxSex);
-            this.Controls.Add(this.lblSex);
+            this.Controls.Add(this.cmBoxCategory);
+            this.Controls.Add(this.lblCategory);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.dtTmBirth);
@@ -162,7 +162,7 @@ namespace Rabbits_new
         private System.Windows.Forms.DateTimePicker dtTmBirth;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label lblSex;
-        private System.Windows.Forms.ComboBox cmBoxSex;
+        private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.ComboBox cmBoxCategory;
     }
 }

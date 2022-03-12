@@ -48,14 +48,13 @@ namespace Rabbits_new
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridInfo.ColumnHeadersVisible = false;
-            this.dataGridInfo.Location = new System.Drawing.Point(42, 54);
+            this.dataGridInfo.Location = new System.Drawing.Point(42, 64);
             this.dataGridInfo.MultiSelect = false;
             this.dataGridInfo.Name = "dataGridInfo";
-            this.dataGridInfo.ReadOnly = true;
             this.dataGridInfo.RowHeadersVisible = false;
             this.dataGridInfo.RowHeadersWidth = 62;
             this.dataGridInfo.RowTemplate.Height = 33;
-            this.dataGridInfo.Size = new System.Drawing.Size(742, 290);
+            this.dataGridInfo.Size = new System.Drawing.Size(756, 279);
             this.dataGridInfo.TabIndex = 0;
             // 
             // lblName
@@ -113,7 +112,7 @@ namespace Rabbits_new
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 452);
+            this.ClientSize = new System.Drawing.Size(855, 441);
             this.Controls.Add(this.lblNote);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.txtNote);

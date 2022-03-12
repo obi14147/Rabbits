@@ -10,14 +10,14 @@ namespace Rabbits_new
         public string RabbitName { get; set; }
         public DateTime DateBirth { get; set; }
         public DateTime DateDeath { get; set; }
-        public string Sex { get; set; }
+        public string Category { get; set; }
         public string Note { get; set; }
-        public DataAllRabbits(string rabbitName, DateTime dateBirth, DateTime dateDeath, string sex, string note)
+        public DataAllRabbits(string rabbitName, DateTime dateBirth, DateTime dateDeath, string category, string note)
         {
             RabbitName = rabbitName;
             DateBirth = dateBirth;
             DateDeath = dateDeath;
-            Sex = sex;
+            Category = category;
             Note = note;
         }
     }
@@ -49,7 +49,7 @@ namespace Rabbits_new
             {
                 foreach (DataAllRabbits d in data)
                 {
-                    string[] data = { d.RabbitName, d.DateBirth.ToString("dd/MM/yyyy"), d.DateDeath.ToString("dd/MM/yyyy"), d.Sex, d.Note };
+                    string[] data = { d.RabbitName, d.DateBirth.ToString("dd/MM/yyyy"), d.DateDeath.ToString("dd/MM/yyyy"), d.Category, d.Note };
                     string line = String.Join(";", data);
                     sw.WriteLine(line);
                 }

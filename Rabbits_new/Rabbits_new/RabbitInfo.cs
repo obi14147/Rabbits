@@ -14,7 +14,7 @@ namespace Rabbits_new
         private CalculateDate calculateDate;
         private string RabbitName { get; set; }
 
-        public RabbitInfo(string rabbitName)
+        public RabbitInfo(string rabbitName, string category)
         {
             RabbitName = rabbitName;
             InitializeComponent();
@@ -24,18 +24,33 @@ namespace Rabbits_new
             this.lblName.Text = rabbitName;
             this.InitializeGrid();
 
-            this.dataFromDatabaseToGrid();
+            if (category == "Samica")
+            {
+                this.dataFromDatabaseToGrid();
+            }
+            else
+            {
+                this.dataGridInfo.Hide();
+                this.txtNote.Hide();
+                this.dtTmStart.Hide();
+                this.btnStart.Hide();
+            }
         }
 
         #region Initialize component
         private void InitializeGrid()
         {
-            this.dataGridInfo.ColumnCount = 5;
+            this.dataGridInfo.ColumnCount = 6;
             this.dataGridInfo.Columns[0].Name = "Nahóňěná";
+            this.dataGridInfo.Columns[0].ReadOnly = true;
             this.dataGridInfo.Columns[1].Name = "Kocení";
+            this.dataGridInfo.Columns[1].ReadOnly = true;
             this.dataGridInfo.Columns[2].Name = "Odstav";
+            this.dataGridInfo.Columns[2].ReadOnly = true;
             this.dataGridInfo.Columns[3].Name = "Rozdělení";
+            this.dataGridInfo.Columns[3].ReadOnly = true;
             this.dataGridInfo.Columns[4].Name = "Poznámky";
+            this.dataGridInfo.Columns[5].Name = "Počet mladých";
         }
         #endregion
         private void dataFromDatabaseToGrid()
@@ -48,7 +63,7 @@ namespace Rabbits_new
                 if (rabbit.RabbitName == this.RabbitName)
                 {
                     InfoData toGrid = new InfoData(
-                    rabbit.DateStart, rabbit.DateBirth, rabbit.DateParaMum, rabbit.DateSplit, rabbit.Note
+                    rabbit.DateStart, rabbit.DateBirth, rabbit.DateParaMum, rabbit.DateSplit, rabbit.Note, rabbit.NumberKids
                     );
                     dataToList.Add(toGrid);
                 }
@@ -56,7 +71,7 @@ namespace Rabbits_new
 
             foreach (InfoData rab in dataToList)
             {
-                this.dataGridInfo.Rows.Add(rab.DateStart.ToString("dd.MM.yyyy"), rab.DateBirth.ToString("dd.MM.yyyy"), rab.DateParaMum.ToString("dd.MM.yyyy"), rab.DateSplit.ToString("dd.MM.yyyy"), rab.Note);
+                this.dataGridInfo.Rows.Add(rab.DateStart.ToString("dd.MM.yyyy"), rab.DateBirth.ToString("dd.MM.yyyy"), rab.DateParaMum.ToString("dd.MM.yyyy"), rab.DateSplit.ToString("dd.MM.yyyy"), rab.Note, rab.NumberKids);
             }
         }
 
@@ -74,7 +89,7 @@ namespace Rabbits_new
 
             DateTime[] dates = calculateDate.getDates(dateStart);
 
-            database.AddData(this.RabbitName, dateStart, dates[0], dates[1], dates[2], this.txtNote.Text);
+            database.AddData(this.RabbitName, dateStart, dates[0], dates[1], dates[2], this.txtNote.Text, 0);
             try
             {
                 database.SaveData();

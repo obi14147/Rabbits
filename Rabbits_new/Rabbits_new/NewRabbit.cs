@@ -27,6 +27,11 @@ namespace Rabbits_new
                 MessageBox.Show("Write a rabbit name!", "Warning");
                 return;
             }
+            else if (this.cmBoxCategory.Text == "")
+            {
+                MessageBox.Show("Write a rabbit category!", "Warning");
+                return;
+            }
             else if (this.dtTmBirth.Text == "")
             {
                 MessageBox.Show("Write a birth date!", "Warning");
@@ -39,7 +44,7 @@ namespace Rabbits_new
             //DateTime[] dates = calculateDate.getDates(dateStart);
             DateTime dateDeath = DateTime.MaxValue;
 
-            databaseRabbits.AddData(this.txtName.Text, dateStart, dateDeath,this.cmBoxSex.Text, this.txtNote.Text);
+            databaseRabbits.AddData(this.txtName.Text, dateStart, dateDeath,this.cmBoxCategory.Text, this.txtNote.Text);
             try
             {
                 databaseRabbits.SaveData();
