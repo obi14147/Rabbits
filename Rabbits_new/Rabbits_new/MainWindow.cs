@@ -13,8 +13,11 @@ namespace Rabbits_new
 {
     public partial class MainWindow : Form
     {
-        public static string dataFileFemaleRabbits = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\RabbitsFemale_test.csv";
-        public static string dataFileAllRabbits = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits" + @"\RabbitsAll_test.csv";
+        public static string dataFolderRabbits = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits";
+        public static string dataFolderInfoToPrint = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits\InfoToPrint";
+
+        public static string dataFileFemaleRabbits = dataFolderRabbits + @"\RabbitsFemale_test.csv";
+        public static string dataFileAllRabbits = dataFolderRabbits + @"\RabbitsAll_test.csv";
         private DatabaseFemale databaseFemale;
         private DatabaseRabbits databaseAllRabbits;
 
@@ -29,7 +32,8 @@ namespace Rabbits_new
             databaseFemale = new DatabaseFemale(dataFileFemaleRabbits);
             databaseAllRabbits = new DatabaseRabbits(dataFileAllRabbits);
 
-            this.createFolder();
+            this.createFolder(dataFolderRabbits);
+            this.createFolder(dataFolderInfoToPrint);
             //TODO: Not work correctly
             if (!checkFileExists(dataFileFemaleRabbits)) { return; }
             if (!checkFileExists(dataFileAllRabbits)) { return; }
@@ -97,12 +101,12 @@ namespace Rabbits_new
                 MessageBox.Show("Database could not be load " + e, "Error");
             }
         }
-        private void createFolder()
+        private void createFolder(string folderName)
         {
-            string ny = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits";
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits"))
+            //string ny = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits";
+            if (!Directory.Exists(folderName))
             {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits");
+                Directory.CreateDirectory(folderName);
             }
         }
         private bool checkFileExists(string file_path)

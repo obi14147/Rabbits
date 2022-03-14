@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Rabbits_new
 {    public partial class RabbitInfo : Form
@@ -14,11 +16,15 @@ namespace Rabbits_new
         private CalculateDate calculateDate;
         private string RabbitName { get; set; }
         private List<InfoData> dataToList = new List<InfoData>();
+
+        private Font printFont;
+        private StreamReader streamToPrint;
+        private string printer;
         public RabbitInfo(string rabbitName, string category)
         {
             RabbitName = rabbitName;
             InitializeComponent();
-            
+
             database = new DatabaseFemale(MainWindow.dataFileFemaleRabbits);
 
             this.lblName.Text = rabbitName;
@@ -34,6 +40,7 @@ namespace Rabbits_new
                 this.txtNote.Hide();
                 this.dtTmStart.Hide();
                 this.btnStart.Hide();
+                this.grBxStart.Hide();
             }
         }
 
@@ -75,6 +82,139 @@ namespace Rabbits_new
             }
         }
 
+        private void saveChanges()
+        {
+            for (int i = 0; i < this.dataGridInfo.RowCount; i++)
+            {
+                string rabbitName = this.lblName.Text;
+                string dateStart = this.dataGridInfo.Rows[i].Cells[0].Value.ToString();
+                string dateBirth = this.dataGridInfo.Rows[i].Cells[1].Value.ToString();
+                string dateParaMum = this.dataGridInfo.Rows[i].Cells[2].Value.ToString();
+                string dateSplit = this.dataGridInfo.Rows[i].Cells[3].Value.ToString();
+
+                string noteCheck = this.dataGridInfo.Rows[i].Cells[4].Value.ToString();
+                int numberKidsCheck = Int32.Parse(this.dataGridInfo.Rows[i].Cells[5].Value.ToString());
+
+                string noteOld = dataToList[i].Note;
+                int numberKidsOld = dataToList[i].NumberKids;
+
+                if (noteCheck != noteOld || numberKidsCheck != numberKidsOld)
+                {
+                    string[] oldData = { rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, noteOld, numberKidsOld.ToString() };
+                    string[] newData = { rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, noteCheck, numberKidsCheck.ToString() };
+                    database.EditData(oldData, newData);
+                }
+            }
+        }
+        private void prepareToPrintData(string[] infoToPrint)
+        {
+            DateTime today = DateTime.Now;
+            string fileName = this.RabbitName + "_" + GetTimestamp(today) + ".txt";
+            string path = MainWindow.dataFolderInfoToPrint + @"\" + fileName;
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                string data = "--------------------------------------\n" +
+                    $"  Králík:_______{infoToPrint[0]}\n" +
+                    $"  Připuštěna:___{infoToPrint[1]}\n" +
+                    $"  Kocení:_______{infoToPrint[2]}\n" +
+                    $"  Odstav:_______{infoToPrint[3]}\n" +
+                    $"  Rozdělení:____{infoToPrint[4]}\n" +
+                    "--------------------------------------";
+                sw.WriteLine(data);
+                sw.Flush();
+            }
+            this.printData(path);
+            // TODO: mozna soubor potom vymazat
+
+        }
+
+        private void printData(string path)
+        {
+            selectPrinter();
+            try
+            {
+                streamToPrint = new StreamReader(path);
+                try
+                {
+                    printFont = new Font("Arial", 12);
+                    this.printRabbitInfo.PrinterSettings.PrinterName = printer;
+                    this.printRabbitInfo.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
+                    this.printRabbitInfo.Print();
+                }
+                finally
+                {
+                    streamToPrint.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void selectPrinter()
+        {
+            using (Form form = new Form())
+            {
+                ComboBox cmBxPrinters = new ComboBox();
+                Button btnConfirmPrinter = new Button();
+
+                form.Text = "Vyberte tiskárnu";
+                form.Size = new Size(500, 200);
+                form.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+                cmBxPrinters.Dock = DockStyle.Top;
+                cmBxPrinters.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                btnConfirmPrinter.Text = "Potvrdit";
+                btnConfirmPrinter.Dock = DockStyle.Bottom;
+                btnConfirmPrinter.Size = new Size(200, 50);
+                btnConfirmPrinter.Click += new EventHandler(btnConfirmPrinter_Click);
+
+                form.Controls.Add(cmBxPrinters);
+                form.Controls.Add(btnConfirmPrinter);
+
+                for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+                {
+                    printer = PrinterSettings.InstalledPrinters[i];
+                    cmBxPrinters.Items.Add(printer);
+                    if (this.printRabbitInfo.PrinterSettings.IsDefaultPrinter)
+                    {
+                        cmBxPrinters.Text = this.printRabbitInfo.PrinterSettings.PrinterName;
+                    }
+                }
+
+                form.ShowDialog();
+                printer = cmBxPrinters.Text;
+
+                void btnConfirmPrinter_Click(object sender, EventArgs e)
+                {
+                    form.Close();
+                }
+            }
+        }
+        private void pd_PrintPage(object sender, PrintPageEventArgs ev)
+        {
+            float linesPerPage = 0;
+            float yPos = 0;
+            int count = 0;
+            float leftMargin = ev.MarginBounds.Left;
+            float topMargin = ev.MarginBounds.Top;
+            string line = null;
+
+            linesPerPage = ev.MarginBounds.Height / printFont.GetHeight(ev.Graphics);
+
+            while (count < linesPerPage && ((line = streamToPrint.ReadLine()) != null))
+            {
+                yPos = topMargin + (count * printFont.GetHeight(ev.Graphics));
+                ev.Graphics.DrawString(line, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
+                count++;
+            }
+        }
+        private static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyyyMMddHHmmssffff");
+        }
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             calculateDate = new CalculateDate();
@@ -98,34 +238,47 @@ namespace Rabbits_new
             {
                 MessageBox.Show("Database could not be saved", "Error");
             }
+            // Possible printing
+            DialogResult dgRes = MessageBox.Show("Přejete si data i rovnou vytisknout?", "Tisk", MessageBoxButtons.YesNo);
+            if (dgRes == DialogResult.Yes)
+            {
+                string[] dataToPrint =
+                {
+                    this.RabbitName,
+                    dateStart.ToString("dd.MM.yyyy"),
+                    dates[0].ToString("dd.MM.yyyy"),
+                    dates[1].ToString("dd.MM.yyyy"),
+                    dates[2].ToString("dd.MM.yyyy")
+                };
+                this.prepareToPrintData(dataToPrint);
+            }
             mainWindow.processData();
             this.dataFromDatabaseToGrid();
         }
 
-        //TODO: Kdyz je zmena poznamky, nebo poctu mladat - porjit celu tabulku a pak opravit data v databazi
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < this.dataGridInfo.RowCount; i++)
+            this.saveChanges();
+            this.Close();
+        }
+
+        private void RabbitInfo_Deactivate(object sender, EventArgs e)
+        {
+            this.saveChanges();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            int rowIndex = this.dataGridInfo.CurrentCell.RowIndex;
+            string[] dataToPrint = 
             {
-                string rabbitName = this.lblName.Text;
-                string dateStart = this.dataGridInfo.Rows[i].Cells[0].Value.ToString();
-                string dateBirth = this.dataGridInfo.Rows[i].Cells[1].Value.ToString();
-                string dateParaMum = this.dataGridInfo.Rows[i].Cells[2].Value.ToString();
-                string dateSplit = this.dataGridInfo.Rows[i].Cells[3].Value.ToString();
-
-                string noteCheck = this.dataGridInfo.Rows[i].Cells[4].Value.ToString();
-                int numberKidsCheck = Int32.Parse(this.dataGridInfo.Rows[i].Cells[5].Value.ToString());
-
-                string noteOld = dataToList[i].Note;
-                int numberKidsOld = dataToList[i].NumberKids;
-
-                if (noteCheck != noteOld || numberKidsCheck != numberKidsOld)
-                {
-                    string[] oldData = { rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, noteOld, numberKidsOld.ToString() };
-                    string[] newData = {rabbitName, dateStart, dateBirth, dateParaMum, dateSplit, noteCheck, numberKidsCheck.ToString() };
-                    database.EditData(oldData, newData);
-                }
-            }
+                this.lblName.Text,
+                this.dataGridInfo.Rows[rowIndex].Cells[0].Value.ToString(),
+                this.dataGridInfo.Rows[rowIndex].Cells[1].Value.ToString(),
+                this.dataGridInfo.Rows[rowIndex].Cells[2].Value.ToString(),
+                this.dataGridInfo.Rows[rowIndex].Cells[3].Value.ToString()
+            };
+            this.prepareToPrintData(dataToPrint);
         }
     }
 }

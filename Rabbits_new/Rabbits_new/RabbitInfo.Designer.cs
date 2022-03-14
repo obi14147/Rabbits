@@ -38,6 +38,8 @@ namespace Rabbits_new
             this.lblNote = new System.Windows.Forms.Label();
             this.grBxStart = new System.Windows.Forms.GroupBox();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.printRabbitInfo = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).BeginInit();
             this.grBxStart.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +52,6 @@ namespace Rabbits_new
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridInfo.ColumnHeadersVisible = false;
             this.dataGridInfo.Location = new System.Drawing.Point(42, 64);
             this.dataGridInfo.MultiSelect = false;
             this.dataGridInfo.Name = "dataGridInfo";
@@ -135,17 +136,29 @@ namespace Rabbits_new
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(604, 290);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(112, 34);
+            this.btnPrint.TabIndex = 9;
+            this.btnPrint.Text = "Vytisknout";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // RabbitInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 458);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.grBxStart);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.dataGridInfo);
             this.Name = "RabbitInfo";
             this.Text = "RabbitInfo";
+            this.Deactivate += new System.EventHandler(this.RabbitInfo_Deactivate);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInfo)).EndInit();
             this.grBxStart.ResumeLayout(false);
             this.grBxStart.PerformLayout();
@@ -165,5 +178,7 @@ namespace Rabbits_new
         private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.GroupBox grBxStart;
         private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Drawing.Printing.PrintDocument printRabbitInfo;
     }
 }
