@@ -124,8 +124,7 @@ namespace Rabbits_new
                 sw.Flush();
             }
             this.printData(path);
-            // TODO: mozna soubor potom vymazat
-
+            this.deleteFile(path);
         }
 
         private void printData(string path)
@@ -215,6 +214,20 @@ namespace Rabbits_new
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
+        private void deleteFile(string path)
+        {
+            try
+            { 
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+            }
+            catch (IOException ioExp)
+            {
+                Console.WriteLine(ioExp.Message);
+            }
+        }
         private void btnStart_Click(object sender, EventArgs e)
         {
             calculateDate = new CalculateDate();

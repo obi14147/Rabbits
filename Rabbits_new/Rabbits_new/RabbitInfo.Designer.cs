@@ -66,8 +66,9 @@ namespace Rabbits_new
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(64, 13);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(0, 25);
+            this.lblName.Size = new System.Drawing.Size(56, 25);
             this.lblName.TabIndex = 1;
+            this.lblName.Text = "name";
             // 
             // dtTmStart
             // 
