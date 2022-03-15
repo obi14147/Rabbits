@@ -46,6 +46,9 @@ namespace Rabbits_new
             // 
             this.dataGridRabbits.AllowUserToAddRows = false;
             this.dataGridRabbits.AllowUserToDeleteRows = false;
+            this.dataGridRabbits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridRabbits.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridRabbits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridRabbits.GridColor = System.Drawing.SystemColors.ActiveCaptionText;

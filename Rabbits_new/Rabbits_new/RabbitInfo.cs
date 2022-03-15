@@ -47,7 +47,7 @@ namespace Rabbits_new
         private void InitializeGrid()
         {
             this.dataGridInfo.ColumnCount = 6;
-            this.dataGridInfo.Columns[0].Name = "Nahóňěná";
+            this.dataGridInfo.Columns[0].Name = "Nahóněná";
             this.dataGridInfo.Columns[0].ReadOnly = true;
             this.dataGridInfo.Columns[1].Name = "Kocení";
             this.dataGridInfo.Columns[1].ReadOnly = true;
