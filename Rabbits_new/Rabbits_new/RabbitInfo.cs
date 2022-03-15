@@ -43,7 +43,6 @@ namespace Rabbits_new
                 this.grBxStart.Hide();
             }
         }
-
         #region Initialize component
         private void InitializeGrid()
         {
@@ -75,7 +74,6 @@ namespace Rabbits_new
                     dataToList.Add(toGrid);
                 }
             }
-
             foreach (InfoData rab in dataToList)
             {
                 this.dataGridInfo.Rows.Add(rab.DateStart.ToString("dd.MM.yyyy"), rab.DateBirth.ToString("dd.MM.yyyy"), rab.DateParaMum.ToString("dd.MM.yyyy"), rab.DateSplit.ToString("dd.MM.yyyy"), rab.Note, rab.NumberKids);
@@ -114,11 +112,11 @@ namespace Rabbits_new
             using (StreamWriter sw = new StreamWriter(path, true))
             {
                 string data = "--------------------------------------\n" +
-                    $"  Králík:_______{infoToPrint[0]}\n" +
-                    $"  Připuštěna:___{infoToPrint[1]}\n" +
-                    $"  Kocení:_______{infoToPrint[2]}\n" +
-                    $"  Odstav:_______{infoToPrint[3]}\n" +
-                    $"  Rozdělení:____{infoToPrint[4]}\n" +
+                    $"|  Králík:_______{infoToPrint[0]} |\n" +
+                    $"|  Připuštěna:___{infoToPrint[1]} |\n" +
+                    $"|  Kocení:_______{infoToPrint[2]} |\n" +
+                    $"|  Odstav:_______{infoToPrint[3]} |\n" +
+                    $"|  Rozdělení:____{infoToPrint[4]} |\n" +
                     "--------------------------------------";
                 sw.WriteLine(data);
                 sw.Flush();
@@ -279,7 +277,6 @@ namespace Rabbits_new
         {
             this.saveChanges();
         }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             int rowIndex = this.dataGridInfo.CurrentCell.RowIndex;

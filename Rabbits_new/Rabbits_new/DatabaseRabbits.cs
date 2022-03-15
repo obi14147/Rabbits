@@ -21,7 +21,6 @@ namespace Rabbits_new
             Note = note;
         }
     }
-
     class DatabaseRabbits
     {
         private List<DataAllRabbits> data;
@@ -37,12 +36,10 @@ namespace Rabbits_new
             DataAllRabbits d = new DataAllRabbits(rabbitName, dateBirth, dateDeath, sex, note);
             data.Add(d);
         }
-
         public DataAllRabbits[] ReturnData()
         {
             return data.ToArray();
         }
-
         public void SaveData()
         {
             using (StreamWriter sw = new StreamWriter(file, true))
@@ -56,7 +53,6 @@ namespace Rabbits_new
                 sw.Flush();
             }
         }
-
         public void ReadData()
         {
             data.Clear();
@@ -76,7 +72,6 @@ namespace Rabbits_new
                 }
             }
         }
-
         public void DeleteData(string rabbitName, string dateStart, string dateBirth, string dateParaMum, string dateSplit, string note)
         {
             string searchedLine = $"{rabbitName};{dateStart};{dateStart};{dateBirth};{dateParaMum};{dateSplit};{note}";

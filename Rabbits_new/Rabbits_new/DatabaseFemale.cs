@@ -59,7 +59,6 @@ namespace Rabbits_new
                 sw.Flush();
             }
         }
-
         public void ReadData()
         {
             data.Clear();
@@ -81,7 +80,6 @@ namespace Rabbits_new
                 }
             }
         }
-
         public void DeleteData(string rabbitName, string dateStart, string dateBirth, string dateParaMum, string dateSplit, string note, string numberKids)
         {
             string searchedLine = $"{rabbitName};{dateStart};{dateBirth};{dateParaMum};{dateSplit};{note};{numberKids}";

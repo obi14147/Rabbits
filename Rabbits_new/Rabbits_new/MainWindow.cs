@@ -16,27 +16,24 @@ namespace Rabbits_new
         public static string dataFolderRabbits = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits";
         public static string dataFolderInfoToPrint = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits\InfoToPrint";
 
-        public static string dataFileFemaleRabbits = dataFolderRabbits + @"\RabbitsFemale_test.csv";
-        public static string dataFileAllRabbits = dataFolderRabbits + @"\RabbitsAll_test.csv";
+        public static string dataFileFemaleRabbits = dataFolderRabbits + @"\RabbitsFemale.csv";
+        public static string dataFileAllRabbits = dataFolderRabbits + @"\RabbitsAll.csv";
         private DatabaseFemale databaseFemale;
         private DatabaseRabbits databaseAllRabbits;
 
-        private CalculateDate calculateDate;
         public List<DataFemale> dataRabbits = new List<DataFemale>();
         public MainWindow()
         {
             InitializeComponent();
             this.InitializeGrid();
 
-            //this.dpStart.SelectedDate = DateTime.Today;
             databaseFemale = new DatabaseFemale(dataFileFemaleRabbits);
             databaseAllRabbits = new DatabaseRabbits(dataFileAllRabbits);
 
             this.createFolder(dataFolderRabbits);
             this.createFolder(dataFolderInfoToPrint);
-            //TODO: Not work correctly
-            if (!checkFileExists(dataFileFemaleRabbits)) { return; }
-            if (!checkFileExists(dataFileAllRabbits)) { return; }
+            this.createFile(dataFileFemaleRabbits);
+            this.createFile(dataFileAllRabbits);
 
             this.processData();
         }
@@ -103,21 +100,16 @@ namespace Rabbits_new
         }
         private void createFolder(string folderName)
         {
-            //string ny = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Rabbits";
             if (!Directory.Exists(folderName))
             {
                 Directory.CreateDirectory(folderName);
             }
         }
-        private bool checkFileExists(string file_path)
+        private void createFile(string file_path)
         {
-            if (File.Exists(file_path))
+            if (!File.Exists(file_path))
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                File.Create(file_path);
             }
         }
 

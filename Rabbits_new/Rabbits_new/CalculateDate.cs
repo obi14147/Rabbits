@@ -10,7 +10,6 @@ namespace Rabbits_new
         private Calendar calendar = CultureInfo.InvariantCulture.Calendar;
         public DateTime[] getDates(DateTime startDate)
         {
-
             List<DateTime> arrayDate = new List<DateTime>();
             DateTime dateBirth = calendar.AddDays(startDate, 31);
             DateTime dateParaMum = calendar.AddDays(startDate, 56);
