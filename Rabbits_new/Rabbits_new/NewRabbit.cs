@@ -14,6 +14,7 @@ namespace Rabbits_new
         private CalculateDate calculateDate;
         public NewRabbit()
         {
+            //this.pictureBox1.ImageLocation = @"...\Images\rabbit.png";
             InitializeComponent();
             //database = new DatabaseFemale(MainWindow.dataFileFemaleRabbits);
             databaseRabbits = new DatabaseRabbits(MainWindow.dataFileAllRabbits);
