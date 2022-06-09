@@ -12,7 +12,7 @@ namespace Rabbits_new
         {
             List<DateTime> arrayDate = new List<DateTime>();
             DateTime dateBirth = calendar.AddDays(startDate, 31);
-            DateTime dateParaMum = calendar.AddDays(startDate, 56);
+            DateTime dateParaMum = calendar.AddDays(startDate, 87);
             DateTime dateSplit = calendar.AddMonths(startDate, 4);
 
             arrayDate.Add(dateBirth);

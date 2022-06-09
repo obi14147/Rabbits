@@ -143,8 +143,10 @@ namespace Rabbits_new
             // 
             // NewRabbit
             // 
+            this.AcceptButton = this.btnConfirm;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(617, 340);
             this.Controls.Add(this.cmBoxCategory);
             this.Controls.Add(this.lblCategory);

@@ -43,9 +43,9 @@ namespace Rabbits_new
             dataGridRabbits.ColumnCount = 5;
             dataGridRabbits.Columns[0].Name = "Králík";
             dataGridRabbits.Columns[1].Name = "Narození";
-            dataGridRabbits.Columns[2].Name = "Smrt";
-            dataGridRabbits.Columns[3].Name = "Kategorie";
-            dataGridRabbits.Columns[4].Name = "Poznámky";
+            dataGridRabbits.Columns[2].Name = "Kategorie";
+            dataGridRabbits.Columns[3].Name = "Poznámky";
+            dataGridRabbits.Columns[4].Name = "Smrt";
 
             DataGridViewButtonColumn btnMore = new DataGridViewButtonColumn();
             btnMore.Text = "Podrobnosti";
@@ -59,7 +59,7 @@ namespace Rabbits_new
             {
                 int rowIndex = dataGridRabbits.CurrentCell.RowIndex;
                 string name = dataGridRabbits.Rows[rowIndex].Cells[0].Value.ToString();
-                string category = dataGridRabbits.Rows[rowIndex].Cells[3].Value.ToString();
+                string category = dataGridRabbits.Rows[rowIndex].Cells[2].Value.ToString();
                 RabbitInfo rabbitInfo = new RabbitInfo(name, category);
                 rabbitInfo.Show();
             }
@@ -89,7 +89,7 @@ namespace Rabbits_new
                     {
                         dateDeathString = "";
                     }
-                    this.dataGridRabbits.Rows.Add(rabbit.RabbitName, rabbit.DateBirth.ToString("dd.MM.yyyy"), dateDeathString, rabbit.Category, rabbit.Note);
+                    this.dataGridRabbits.Rows.Add(rabbit.RabbitName, rabbit.DateBirth.ToString("dd.MM.yyyy"), rabbit.Category, rabbit.Note, dateDeathString);
 
                 }
             }
